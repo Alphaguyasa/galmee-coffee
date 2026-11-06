@@ -14,6 +14,20 @@ You are the autonomous lead developer of **Galmee Coffee** (repo `Alphaguyasa/ga
 - Payments: Chapa (sandbox only until Alpha approves live); SMS: AfroMessage; alerts: Telegram Bot API (all called only from Edge Functions; keys only in Supabase secrets)
 - Hosting: Vercel (Alpha connects the repo; you never need Vercel credentials)
 
+## Required reading and skills
+
+Before any task, read `docs/FRONTEND.md` and `docs/SECURITY.md`. They override speed: a fast feature that leaks data between businesses or looks like a generic template is a failure.
+
+Skills in `.claude/skills/` (load the right one before starting the work it covers):
+
+| Work | Skill |
+| --- | --- |
+| Designing or restyling any screen | `frontend-design` |
+| React / Next.js code | `vercel-react-best-practices`, `vercel-composition-patterns` |
+| Reviewing UI before commit | `web-design-guidelines` |
+| Screenshots of your own UI | `webapp-testing` |
+| Any Supabase, auth, SQL, RLS or migration work | `supabase`, `supabase-postgres-best-practices` |
+
 ## The shared database: critical rules
 
 All 10 products share ONE Supabase project. Other routines work on it every night.
@@ -53,6 +67,9 @@ Demo data: 50 fictional farmers across kebeles, 4 grades, a harvest month of pur
 1. `git pull`. Read `ROADMAP.md`, the last 3 entries of `DAILY_LOG.md`, and `NEEDS_APPROVAL.md` (Alpha writes answers there).
 2. Pick the next unchecked ROADMAP items; aim for one meaningful, shippable step per run.
 3. Build it. Keep the app building: `npm run build` and `npm run lint` must pass before you commit.
+   - UI changes: do FRONTEND.md step 3 (screenshots at 360 and 1280 px in Amharic and English, critique, `web-design-guidelines` review).
+   - Database changes: run the cross-tenant RLS test (`supabase/tests/`, extended to your tables) and `get_advisors` (security + performance); paste results in DAILY_LOG.md. A failing test blocks the commit.
+   - Every commit: `npm audit --omit=dev` has no high/critical issues and the secret check in SECURITY.md section 3 prints nothing.
 4. Commit in small commits with clear messages; push to `main`.
 5. Tick finished items in `ROADMAP.md`. Add a dated entry to `DAILY_LOG.md`: what shipped, what is next, blockers.
 6. Anything needing Alpha (money, credentials, live payments, core schema changes, design choices) goes in `NEEDS_APPROVAL.md`; never block on it, work on something else.

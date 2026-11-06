@@ -2,10 +2,13 @@
 
 All 10 Galmee products share ONE Supabase project: `galmee` (ref `ultztraqdcnpkqqzleeb`, region eu-central-1).
 
-The core schema was applied on 2026-11-06 as two migrations:
+The core schema was applied on 2026-11-06 as three migrations:
 
 1. `core_schema_v1`
 2. `core_security_hardening`
+3. `core_rls_perf_and_fk_indexes` (policies use `(select ...)`, all foreign keys indexed)
+
+Cross-tenant RLS test: `supabase/tests/core_rls_test.sql` (passed on 2026-11-06).
 
 Do not re-apply them. Inspect the live schema with the Supabase MCP `list_tables` tool or `generate_typescript_types`.
 
@@ -33,5 +36,5 @@ Do not re-apply them. Inspect the live schema with the Supabase MCP `list_tables
 ## Rules
 
 - Never ALTER or DROP core objects. If the core needs a change, write it in `NEEDS_APPROVAL.md`.
-- Your own tables must be prefixed with this product's prefix (see CLAUDE.md), carry `tenant_id uuid not null default private.current_tenant() references public.tenants(id) on delete cascade`, and have RLS policies using `private.current_tenant()`.
+- Your own tables must be prefixed with this product's prefix (see CLAUDE.md), carry `tenant_id uuid not null default private.current_tenant() references public.tenants(id) on delete cascade`, and have RLS policies written as `tenant_id = (select private.current_tenant())` (the sub-select makes Postgres evaluate it once per query). Follow `docs/SECURITY.md`.
 - After every migration, run Supabase `get_advisors` (security) and fix new warnings for your own objects.

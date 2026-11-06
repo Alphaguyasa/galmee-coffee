@@ -55,3 +55,14 @@
 - [ ] Export all tenant data to Excel
 - [ ] Error monitoring hook (Sentry, DSN via env)
 - [ ] README: setup, env vars, deploy steps
+
+## Q: Quality and security baseline (do these inside M0 and M1, not after)
+
+- [ ] `docs/DESIGN.md` written per `docs/FRONTEND.md` and the `frontend-design` skill (palette, type with Ethiopic support, layout wireframes, reviewed against generic defaults)
+- [ ] Tailwind theme tokens and `next/font` fonts from DESIGN.md
+- [ ] `server-only` Data Access Layer in `src/server/dal/`; every Server Action validates with zod and re-checks auth + role
+- [ ] Security headers and CSP with nonce (SECURITY.md section 5)
+- [ ] Cross-tenant RLS test extended to this product's tables and passing
+- [ ] Playwright screenshot script for 360 px and 1280 px (`webapp-testing` skill)
+- [ ] `npm audit` clean, Dependabot active
+- [ ] Self-audit (SECURITY.md section 9) recorded in DAILY_LOG.md
