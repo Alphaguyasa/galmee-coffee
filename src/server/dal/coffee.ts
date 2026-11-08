@@ -170,6 +170,44 @@ export async function listLots(): Promise<LotDTO[]> {
   }));
 }
 
+export type PeriodReportDTO = { grades: DailyGradeDTO[]; advanced: number; paid: number };
+
+export async function periodReport(from: string, to: string): Promise<PeriodReportDTO> {
+  const supabase = await db();
+  const [grades, money] = await Promise.all([
+    supabase.rpc("cf_period_by_grade", { p_from: from, p_to: to }),
+    supabase.rpc("cf_period_money", { p_from: from, p_to: to }).single(),
+  ]);
+  if (grades.error || money.error) throw new Error("load report");
+  const m = money.data as { advanced: number; paid: number };
+  return {
+    grades: (grades.data as { grade_id: string; code: string; name: string; purchases: number; farmers: number; kg: number; amount: number; avg_price: number }[]).map((r) => ({
+      gradeId: r.grade_id, code: r.code, name: r.name, purchases: toNumber(r.purchases), farmers: toNumber(r.farmers), kg: toNumber(r.kg), amount: toNumber(r.amount), avgPrice: toNumber(r.avg_price),
+    })),
+    advanced: toNumber(m.advanced),
+    paid: toNumber(m.paid),
+  };
+}
+
+export type ExportRowDTO = { day: string; farmerNo: number; farmer: string; kebele: string; grade: string; lot: string; kg: number; price: number; amount: number; moisture: string };
+
+const EXPORT_LIMIT = 20_000;
+
+export async function exportPurchases(from: string, to: string): Promise<ExportRowDTO[]> {
+  const supabase = await db();
+  const { data, error } = await supabase
+    .from("cf_purchases")
+    .select("purchased_on, kg, price_per_kg, amount, moisture_note, cf_farmers(farmer_no, name, kebele), cf_grades(name), cf_lots(code)")
+    .gte("purchased_on", from).lte("purchased_on", to).is("voided_at", null)
+    .order("purchased_on").order("created_at").limit(EXPORT_LIMIT);
+  if (error) throw new Error("export purchases");
+  type Row = { purchased_on: string; kg: number; price_per_kg: number; amount: number; moisture_note: string | null; cf_farmers: { farmer_no: number; name: string; kebele: string }; cf_grades: { name: string }; cf_lots: { code: string } };
+  return (data as unknown as Row[]).map((r) => ({
+    day: r.purchased_on, farmerNo: r.cf_farmers.farmer_no, farmer: r.cf_farmers.name, kebele: r.cf_farmers.kebele, grade: r.cf_grades.name, lot: r.cf_lots.code,
+    kg: toNumber(r.kg), price: toNumber(r.price_per_kg), amount: toNumber(r.amount), moisture: r.moisture_note ?? "",
+  }));
+}
+
 async function rpc<T>(name: string, args: Record<string, unknown>): Promise<Result<T>> {
   const supabase = await db();
   const { data, error } = await supabase.rpc(name, args);

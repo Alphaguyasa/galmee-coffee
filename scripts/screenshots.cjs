@@ -8,7 +8,7 @@ const { chromium } = require("playwright");
 const BASE = process.env.BASE_URL ?? "http://localhost:3123";
 const OUT = "docs/screenshots";
 const PUBLIC = ["/login", "/signup", "/offline"];
-const PRIVATE = ["/", "/buy", "/farmers", "/stock", "/setup"];
+const PRIVATE = ["/", "/buy", "/farmers", "/stock", "/reports", "/setup"];
 const VIEWPORTS = [
   { width: 360, height: 800 },
   { width: 1280, height: 800 },

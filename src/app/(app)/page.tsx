@@ -7,13 +7,14 @@ import type { Locale } from "@/i18n/config";
 import { addisToday } from "@/lib/day";
 import { formatBirr, formatKg } from "@/lib/money";
 import { dailyByGrade, dayPurchases } from "@/server/dal/coffee";
+import { getSession } from "@/server/dal/session";
 import { daySchema } from "@/server/validation";
 
 export default async function TodayPage({ searchParams }: { searchParams: Promise<{ day?: string }> }) {
   const { day: dayRaw } = await searchParams;
   const day = daySchema.safeParse(dayRaw).data ?? addisToday();
   const locale = (await getLocale()) as Locale;
-  const [t, grades, purchases] = await Promise.all([getTranslations("today"), dailyByGrade(day), dayPurchases(day)]);
+  const [t, grades, purchases, { profile }] = await Promise.all([getTranslations("today"), dailyByGrade(day), dayPurchases(day), getSession()]);
   const totalKg = grades.reduce((sum, g) => sum + g.kg, 0);
   const totalAmount = grades.reduce((sum, g) => sum + g.amount, 0);
   const farmers = new Set(purchases.map((p) => p.farmerId)).size;
@@ -28,6 +29,8 @@ export default async function TodayPage({ searchParams }: { searchParams: Promis
       <Readout label={t("bought")} value={formatKg(totalKg)} unit="kg">
         {formatBirr(totalAmount, locale)} · {t("farmers", { count: farmers })}
       </Readout>
+
+      {profile.role !== "staff" ? <Link href="/reports" className="text-sm font-semibold text-primary underline underline-offset-4">{t("reports")}</Link> : null}
 
       {grades.length === 0 ? (
         <p className="text-muted-foreground">{t("empty")}</p>

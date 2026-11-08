@@ -101,7 +101,8 @@
     "empty": "Guyyaa kana homtuu hin bitamne.",
     "byGrade": "Sadarkaan",
     "avgPrice": "Giddu galeessaan kiiloo tokkoof {price}",
-    "weighings": "Madaallii"
+    "weighings": "Madaallii",
+    "reports": "Gabaasa"
   },
   "buy": {
     "title": "Bittaa galmeessi",
@@ -210,5 +211,20 @@
     "addGrade": "Sadarkaa dabali",
     "addAction": "Sadarkaa dabali",
     "code": "Koodii gabaabaa"
+  },
+  "reports": {
+    "title": "Gabaasa",
+    "today": "Har'a",
+    "week": "Torban kana",
+    "month": "Ji'a Itoophiyaa kana",
+    "bought": "Buna bitame",
+    "range": "{from} hanga {to}",
+    "empty": "Yeroo kana homtuu hin bitamne.",
+    "byGrade": "Sadarkaan",
+    "line": "Madaallii {count} · Qonnaan bultoota {farmers} · Giddu galeessaan kiiloo tokkoof {price}",
+    "moneyOut": "Maallaqa qonnaan bultootaaf kenname",
+    "advanced": "Liqii",
+    "paid": "Kaffaltii",
+    "export": "CSV buusi"
   }
 }

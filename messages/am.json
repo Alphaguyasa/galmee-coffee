@@ -101,7 +101,8 @@
     "empty": "በዚህ ቀን ምንም አልተገዛም።",
     "byGrade": "በደረጃ",
     "avgPrice": "አማካይ በኪሎ {price}",
-    "weighings": "ሚዛኖች"
+    "weighings": "ሚዛኖች",
+    "reports": "ሪፖርት"
   },
   "buy": {
     "title": "ግዢ ይመዝግቡ",
@@ -210,5 +211,20 @@
     "addGrade": "ደረጃ ጨምር",
     "addAction": "ደረጃ ጨምር",
     "code": "አጭር ኮድ"
+  },
+  "reports": {
+    "title": "ሪፖርት",
+    "today": "ዛሬ",
+    "week": "ይህ ሳምንት",
+    "month": "ይህ የኢትዮጵያ ወር",
+    "bought": "የተገዛ ቡና",
+    "range": "ከ{from} እስከ {to}",
+    "empty": "በዚህ ጊዜ ምንም አልተገዛም።",
+    "byGrade": "በደረጃ",
+    "line": "{count} ሚዛኖች · {farmers} ገበሬዎች · አማካይ በኪሎ {price}",
+    "moneyOut": "ለገበሬዎች የተሰጠ ገንዘብ",
+    "advanced": "ብድር",
+    "paid": "ክፍያ",
+    "export": "CSV አውርድ"
   }
 }

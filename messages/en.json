@@ -101,7 +101,8 @@
     "empty": "Nothing bought on this day.",
     "byGrade": "By grade",
     "avgPrice": "Average {price} per kg",
-    "weighings": "Weighings"
+    "weighings": "Weighings",
+    "reports": "Reports"
   },
   "buy": {
     "title": "Record a purchase",
@@ -210,5 +211,20 @@
     "addGrade": "Add a grade",
     "addAction": "Add grade",
     "code": "Short code"
+  },
+  "reports": {
+    "title": "Reports",
+    "today": "Today",
+    "week": "This week",
+    "month": "This Ethiopian month",
+    "bought": "Coffee bought",
+    "range": "{from} to {to}",
+    "empty": "Nothing bought in this period.",
+    "byGrade": "By grade",
+    "line": "{count, plural, one {# weighing} other {# weighings}} · {farmers, plural, one {# farmer} other {# farmers}} · Average {price} per kg",
+    "moneyOut": "Money given to farmers",
+    "advanced": "Advances",
+    "paid": "Payments",
+    "export": "Download CSV"
   }
 }
