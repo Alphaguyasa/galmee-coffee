@@ -39,14 +39,14 @@
 ## M3: Notifications
 
 - [ ] SMS receipt to the farmer after each purchase
-- [ ] Edge Function reads `notifications` queue and sends (needs AfroMessage/Telegram keys: ask in NEEDS_APPROVAL.md)
+- [ ] Edge Function reads `notifications` queue and sends (needs AfroMessage/Telegram keys: ask in the decision log)
 
 ## M4: Demo ready
 
 - [ ] Demo tenant "Galmee Coffee Demo" with data: 50 fictional farmers across kebeles, 4 grades, a harvest month of purchases
-- [ ] Demo login documented in NEEDS_APPROVAL.md for Alpha (password set by Alpha, never committed)
+- [ ] Demo login documented in the decision log for Alpha (password set by Alpha, never committed)
 - [ ] 5-minute demo path works on a phone in airplane mode for the main action
-- [ ] Amharic and Afaan Oromo text reviewed list in NEEDS_APPROVAL.md for Alpha (native speaker)
+- [ ] Amharic and Afaan Oromo text reviewed list in the decision log for Alpha (native speaker)
 
 ## M5: Client ready
 
@@ -58,11 +58,11 @@
 
 ## Q: Quality and security baseline (do these inside M0 and M1, not after)
 
-- [ ] `docs/DESIGN.md` written per `docs/FRONTEND.md` and the `frontend-design` skill (palette, type with Ethiopic support, layout wireframes, reviewed against generic defaults)
+- [ ] `docs/DESIGN.md` written per the frontend guidelines (palette, type with Ethiopic support, layout wireframes, reviewed against generic defaults)
 - [ ] Tailwind theme tokens and `next/font` fonts from DESIGN.md
 - [ ] `server-only` Data Access Layer in `src/server/dal/`; every Server Action validates with zod and re-checks auth + role
-- [ ] Security headers and CSP with nonce (SECURITY.md section 5)
+- [ ] Security headers and CSP with nonce (the security guidelines section 5)
 - [ ] Cross-tenant RLS test extended to this product's tables and passing
-- [ ] Playwright screenshot script for 360 px and 1280 px (`webapp-testing` skill)
+- [ ] Playwright screenshot script for 360 px and 1280 px
 - [ ] `npm audit` clean, Dependabot active
-- [ ] Self-audit (SECURITY.md section 9) recorded in DAILY_LOG.md
+- [ ] Self-audit (the security guidelines section 9) recorded in the dev log

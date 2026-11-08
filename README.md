@@ -8,4 +8,4 @@ Part of **Galmee**, business systems for Ethiopian businesses, by Alpha. Mobile-
 - Backend: Supabase (shared project `galmee`), Postgres RLS per business
 - Payments: Chapa (Telebirr, CBE Birr); SMS: AfroMessage; alerts: Telegram
 
-Built daily by an autonomous Claude Code routine. See `ROADMAP.md` and `DAILY_LOG.md`.
+See `ROADMAP.md` for progress.
