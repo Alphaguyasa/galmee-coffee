@@ -67,6 +67,21 @@ export async function recordPurchaseAction(_prev: ActionState, formData: FormDat
   redirect(`/buy?done=${result.data}`);
 }
 
+/**
+ * Sends one weighing from the offline queue. Safe to repeat: the RPC returns the
+ * weighing already recorded for the same client_ref. Never redirects.
+ */
+export async function syncPurchaseAction(input: Record<string, unknown>): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getUserId())) return { ok: false, error: "not_logged_in" };
+  const parsed = purchaseSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: "form" };
+  const result = await dal.recordPurchase(parsed.data);
+  if (!result.ok) return { ok: false, error: result.error };
+  revalidatePath("/");
+  revalidatePath("/stock");
+  return { ok: true };
+}
+
 export async function recordAdvanceAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
   await requireLogin();
   const parsed = advanceSchema.safeParse(formToObject(formData, ["farmer", "kind", "amount", "method", "note", "clientRef"]));
