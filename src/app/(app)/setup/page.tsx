@@ -18,7 +18,7 @@ export default async function SetupPage() {
 
   return (
     <div className="grid gap-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       <section className="grid gap-2">
         <h2 className="font-semibold">{t("grades")}</h2>
         <p className="text-sm text-muted-foreground">{t("gradesHint")}</p>

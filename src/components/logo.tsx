@@ -1,16 +1,6 @@
-import { cn } from "@/lib/utils";
+import { GalmeeMark } from "@/components/galmee/brand";
 
+/** The app logo tile: the shared Galmee mark on this app's trade colour. */
 export function Logo({ className, inverse = false }: { className?: string; inverse?: boolean }) {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        "inline-flex size-8 items-center justify-center rounded-md text-base font-bold",
-        inverse ? "bg-primary-foreground text-primary" : "bg-primary text-primary-foreground",
-        className,
-      )}
-    >
-      G
-    </span>
-  );
+  return <GalmeeMark className={className} inverse={inverse} />;
 }

@@ -19,7 +19,7 @@ export default async function StockPage() {
 
   return (
     <div className="grid gap-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       <Readout label={t("onHand")} value={formatKg(totalKg)} unit="kg">{t("cost", { amount: formatBirr(totalCost, locale) })}</Readout>
 
       {stock.length === 0 ? (

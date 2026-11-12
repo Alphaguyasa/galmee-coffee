@@ -2,6 +2,11 @@
 
 Change this file first, then the code.
 
+> Coffee uses the **Galmee design system**. Tokens live in `src/app/globals.css`
+> (only `--trade` and the scale-readout tokens are coffee-specific), shared
+> components in `src/components/galmee/`. The colour and type tables below are
+> superseded by the system; the brief, the scale readout and the wireframes stay.
+
 ## Brief
 
 - **Subject:** a coffee collection point in the Sidama and Guji highlands during harvest. Shade trees over the drying beds, jute sacks stencilled with a grade, a platform scale, a clerk with a buying book and a queue of farmers with their cherries.

@@ -30,7 +30,7 @@ export default async function FarmerPage({ params }: { params: Promise<{ id: str
     <div className="grid gap-4 print:gap-2">
       <Link href="/farmers" className="inline-flex items-center gap-1 text-sm text-muted-foreground print:hidden"><ChevronLeft className="size-4" aria-hidden />{t("back")}</Link>
       <div>
-        <h1 className="text-2xl font-bold">{farmer.name}</h1>
+        <h1 className="text-[1.5625rem] leading-tight font-bold">{farmer.name}</h1>
         <p className="num text-sm text-muted-foreground">{t("farmerNo", { no: farmer.no })} · {farmer.kebele}{farmer.phone ? ` · ${farmer.phone}` : ""}{farmer.active ? "" : ` · ${t("inactive")}`}</p>
       </div>
 

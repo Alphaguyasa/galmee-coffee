@@ -23,7 +23,7 @@ export default async function BuyPage({ searchParams }: { searchParams: Promise<
 
   return (
     <div className="grid gap-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       {receipt ? (
         <section role="status" className="grid gap-1 rounded-md border border-primary bg-accent p-3">
           <p className="flex items-center gap-2 font-semibold"><CheckCircle2 className="size-5 text-primary" aria-hidden />{t("recorded", { name: receipt.farmer })}</p>

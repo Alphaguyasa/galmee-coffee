@@ -25,7 +25,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="grid gap-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       <nav aria-label={t("title")} className="grid grid-cols-3 gap-2">
         {PERIODS.map((p) => (
           <Link key={p} href={`/reports?period=${p}`} aria-current={p === period ? "page" : undefined}

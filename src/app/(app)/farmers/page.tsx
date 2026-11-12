@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { Search } from "lucide-react";
+import { Search, Users } from "lucide-react";
 import { addFarmerAction } from "@/actions/coffee";
+import { EmptyState } from "@/components/galmee/empty-state";
+import { ListRow, ListSheet } from "@/components/galmee/list-row";
 import { ActionForm } from "@/components/coffee/action-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,7 +19,7 @@ export default async function FarmersPage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="grid gap-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       <form className="flex gap-2" role="search">
         <div className="relative min-w-0 flex-1">
           <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
@@ -28,24 +29,24 @@ export default async function FarmersPage({ searchParams }: { searchParams: Prom
       </form>
 
       {rows.length === 0 ? (
-        <p className="text-muted-foreground">{q ? t("noMatch") : t("empty")}</p>
+        <EmptyState icon={Users} message={q ? t("noMatch") : t("empty")} />
       ) : (
-        <ul className="divide-y rounded-md border bg-card">
+        <ListSheet>
           {rows.map((f) => (
-            <li key={f.id}>
-              <Link href={`/farmers/${f.id}`} className="flex min-h-14 items-center justify-between gap-3 px-3 py-2 hover:bg-accent">
-                <span className="min-w-0">
-                  <span className="block truncate font-semibold">{f.name}{f.active ? "" : ` (${t("inactive")})`}</span>
-                  <span className="num block truncate text-sm text-muted-foreground">{f.no} · {f.kebele}{f.phone ? ` · ${f.phone}` : ""}</span>
-                </span>
-                <span className="num shrink-0 text-right">
-                  <span className={`block font-semibold ${f.due < 0 ? "text-destructive" : ""}`}>{formatBirr(Math.abs(f.due), locale)}</span>
-                  <span className="block text-sm text-muted-foreground">{f.due < 0 ? t("owes") : f.due > 0 ? t("due") : `${formatKg(f.kg)} kg`}</span>
-                </span>
-              </Link>
-            </li>
+            <ListRow
+              key={f.id}
+              href={`/farmers/${f.id}`}
+              title={`${f.name}${f.active ? "" : ` (${t("inactive")})`}`}
+              sub={<span className="num">{f.no} · {f.kebele}{f.phone ? ` · ${f.phone}` : ""}</span>}
+              right={
+                <>
+                  <span className={`num font-semibold whitespace-nowrap ${f.due < 0 ? "text-owed" : ""}`}>{formatBirr(Math.abs(f.due), locale)}</span>
+                  <span className="num text-sm text-muted-foreground">{f.due < 0 ? t("owes") : f.due > 0 ? t("due") : `${formatKg(f.kg)} kg`}</span>
+                </>
+              }
+            />
           ))}
-        </ul>
+        </ListSheet>
       )}
       {more ? <p className="text-sm text-muted-foreground">{t("more")}</p> : null}
 
