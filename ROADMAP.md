@@ -1,5 +1,22 @@
 # ROADMAP: Galmee Coffee
 
+## M-next: Tier 1 close-out
+
+- [ ] SMS sender wiring for queued farmer receipts (shared Edge Function)
+- [ ] Offline queue for `cf_record_purchase` (client_ref exists)
+- [ ] Sync status indicator on buy screen
+
+## M-after: Tier 2 and 3
+
+- [ ] Collection-point field on purchases + per-point report
+- [ ] Season settlement sheet per farmer (print)
+- [ ] Owner evening Telegram summary
+- [ ] Staff invite + per-clerk purchase report
+- [ ] Lot dispatch: buyer, price realized, margin per lot
+- [ ] Export-all to Excel
+
+Out of scope: moisture-meter integrations and quality scoring beyond the free-text moisture note; a second calendar screen (the Ethiopian date is already shown everywhere).
+
 ## M0: Foundation (shared pattern for all Galmee products)
 
 - [x] Next.js App Router + TS + Tailwind + shadcn/ui scaffold; `npm run build` passes
@@ -18,7 +35,7 @@
 - [ ] Items and stock (if this product uses stock): list, add, receive stock
 - [ ] Payments and credit: record payment, credit statement
 - [x] Reports: today / this week / this Ethiopian month; export CSV
-- [ ] Offline queue for the main money action with sync status indicator
+- [ ] Offline queue for the main money action with sync status indicator (see M-next)
 
 ## M2: Galmee Coffee features
 
@@ -52,7 +69,7 @@
 
 - [ ] Receipt printing (58/80 mm thermal) and Telegram receipt
 - [ ] Data import from Excel/CSV
-- [ ] Export all tenant data to Excel
+- [ ] Export all tenant data to Excel (see M-after)
 - [ ] Error monitoring hook (Sentry, DSN via env)
 - [ ] README: setup, env vars, deploy steps
 
