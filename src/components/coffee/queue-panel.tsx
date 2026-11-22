@@ -45,8 +45,8 @@ export function QueuePanel({
               </p>
               <p className="text-sm text-destructive">{tErrors(r.error ?? "generic")}</p>
               <div className="flex gap-2">
-                <Button type="button" variant="outline" size="sm" onClick={() => onRetry(r.clientRef)}>{t("retry")}</Button>
-                <Button type="button" variant="destructive" size="sm" onClick={() => onDiscard(r.clientRef)}>{t("discard")}</Button>
+                <Button type="button" variant="outline" onClick={() => onRetry(r.clientRef)}>{t("retry")}</Button>
+                <Button type="button" variant="destructive" onClick={() => onDiscard(r.clientRef)}>{t("discard")}</Button>
               </div>
             </li>
           ))}

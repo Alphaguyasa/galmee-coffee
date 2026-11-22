@@ -7,7 +7,7 @@
 - [x] Sync status indicator on buy screen
 - [x] Logout warns before dropping unsent weighings, then clears the phone's queue
 - [ ] Buy screen opens offline from a cold start (farmers and grades kept on the phone)
-- [ ] Waiting/refused weighings shown on the Today screen too
+- [x] Waiting/refused weighings shown on the Today screen too
 
 ## M-after: Tier 2 and 3
 

@@ -4,6 +4,7 @@ import { ShoppingBasket } from "lucide-react";
 import { EmptyState } from "@/components/galmee/empty-state";
 import { ListRow, ListSheet } from "@/components/galmee/list-row";
 import { DayNav } from "@/components/coffee/day-nav";
+import { PhoneQueue } from "@/components/coffee/phone-queue";
 import { Readout } from "@/components/coffee/readout";
 import { buttonVariants } from "@/components/ui/button";
 import type { Locale } from "@/i18n/config";
@@ -17,7 +18,7 @@ export default async function TodayPage({ searchParams }: { searchParams: Promis
   const { day: dayRaw } = await searchParams;
   const day = daySchema.safeParse(dayRaw).data ?? addisToday();
   const locale = (await getLocale()) as Locale;
-  const [t, grades, purchases, { profile }] = await Promise.all([getTranslations("today"), dailyByGrade(day), dayPurchases(day), getSession()]);
+  const [t, grades, purchases, { profile, userId, tenant }] = await Promise.all([getTranslations("today"), dailyByGrade(day), dayPurchases(day), getSession()]);
   const totalKg = grades.reduce((sum, g) => sum + g.kg, 0);
   const totalAmount = grades.reduce((sum, g) => sum + g.amount, 0);
   const farmers = new Set(purchases.map((p) => p.farmerId)).size;
@@ -28,6 +29,7 @@ export default async function TodayPage({ searchParams }: { searchParams: Promis
         <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
         <Link href="/buy" className={buttonVariants()}>{t("buy")}</Link>
       </div>
+      <PhoneQueue owner={{ userId, tenantId: tenant.id }} />
       <DayNav path="/" day={day} maxToday />
       <Readout label={t("bought")} value={formatKg(totalKg)} unit="kg">
         {formatBirr(totalAmount, locale)} · {t("farmers", { count: farmers })}
