@@ -14,6 +14,7 @@
 - [ ] Staff invite + per-clerk purchase report
 - [ ] Lot dispatch: buyer, price realized, margin per lot
 - [ ] Export-all to Excel
+- [x] Season opening letter per farmer (print): last season's kilos, bonus, advance available, opening day
 
 Out of scope: moisture-meter integrations and quality scoring beyond the free-text moisture note; a second calendar screen (the Ethiopian date is already shown everywhere).
 
