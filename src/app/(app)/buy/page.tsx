@@ -13,7 +13,7 @@ export default async function BuyPage({ searchParams }: { searchParams: Promise<
   const { done: doneRaw } = await searchParams;
   const done = idSchema.safeParse(doneRaw).data;
   const locale = (await getLocale()) as Locale;
-  const [t, farmers, grades, receipt, { profile }] = await Promise.all([
+  const [t, farmers, grades, receipt, { profile, userId, tenant }] = await Promise.all([
     getTranslations("buy"),
     listActiveFarmers(),
     listGrades(true),
@@ -43,7 +43,7 @@ export default async function BuyPage({ searchParams }: { searchParams: Promise<
           <Link href="/farmers" className={buttonVariants({ variant: "outline" })}>{t("goFarmers")}</Link>
         </div>
       ) : (
-        <PurchaseForm key={done ?? "new"} farmers={farmers} grades={grades} />
+        <PurchaseForm key={done ?? "new"} farmers={farmers} grades={grades} owner={{ userId, tenantId: tenant.id }} />
       )}
     </div>
   );

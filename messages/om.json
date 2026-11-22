@@ -128,7 +128,8 @@
     "needGradesStaff": "Sadarkaan hin jiru. Hoogganaa gaafadhu.",
     "goSetup": "Gara Qindaa'inaa",
     "needFarmers": "Bittaa dura qonnaan bulaa jalqabaa galmeessi.",
-    "goFarmers": "Gara Qonnaan bultootaa"
+    "goFarmers": "Gara Qonnaan bultootaa",
+    "queued": "Walqunnamtiin hin jiru. Kiiloon {kg} kan {name} bilbila kana irratti olkaa'ameera; yeroo walqunnamtiin deebi'u ni ergama."
   },
   "farmers": {
     "title": "Qonnaan bultoota",
@@ -269,5 +270,13 @@
     "thanks": "Buna keessan gara madaala keenyaa fidaa. Kiiloon hundi fuuldura keessanitti madaalamee ibsa herrega keessanii keessatti barreeffama.",
     "signBuyer": "Bitaa",
     "signFarmer": "Qonnaan bulaa"
+  },
+  "queue": {
+    "waiting": "{count, plural, one {Madaalli # erguuf eegaa jira} other {Madaallii # erguuf eegaa jiru}}",
+    "syncing": "Madaallii {count} ergaa jira…",
+    "failed": "{count, plural, one {Madaalli # hin fudhatamne} other {Madaallii # hin fudhatamne}}",
+    "waitingHint": "Bilbila kana irratti olkaa'aman. Yeroo walqunnamtiin deebi'u ofumaan ergamu; hanga sanaatti seensa kana irraa hin ba'inaa.",
+    "retry": "Irra deebi'i yaali",
+    "discard": "Haqi"
   }
 }

@@ -128,7 +128,8 @@
     "needGradesStaff": "No grades yet. Ask a manager to add them.",
     "goSetup": "Go to Setup",
     "needFarmers": "Register your first farmer before buying.",
-    "goFarmers": "Go to Farmers"
+    "goFarmers": "Go to Farmers",
+    "queued": "No connection. {kg} kg for {name} is saved on this phone and will be sent when the connection is back."
   },
   "farmers": {
     "title": "Farmers",
@@ -269,5 +270,13 @@
     "thanks": "Bring your coffee to our scale. Every kilo is weighed in front of you and written in your statement.",
     "signBuyer": "Buyer",
     "signFarmer": "Farmer"
+  },
+  "queue": {
+    "waiting": "{count, plural, one {# weighing waiting to send} other {# weighings waiting to send}}",
+    "syncing": "Sending {count, plural, one {# weighing} other {# weighings}}…",
+    "failed": "{count, plural, one {# weighing refused} other {# weighings refused}}",
+    "waitingHint": "Kept on this phone. They are sent by themselves when the connection is back; keep this login until then.",
+    "retry": "Try again",
+    "discard": "Discard"
   }
 }
