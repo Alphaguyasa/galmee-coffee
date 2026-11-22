@@ -243,3 +243,56 @@ export async function updateGrade(i: { grade: string; name: string; price: numbe
   const { error } = await supabase.from("cf_grades").update({ name: i.name, default_price: i.price, active: i.active }).eq("id", i.grade);
   return error ? failure(error.message) : { ok: true, data: undefined };
 }
+
+export type SeasonDTO = { id: string; name: string; startsOn: string; endsOn: string; bonus: number; ceiling: number; opensOn: string };
+export type SeasonInput = Omit<SeasonDTO, "id">;
+export type SeasonLetterDTO = {
+  farmerId: string; farmerNo: number; name: string; kebele: string;
+  kg: number; bought: number; bonus: number; ceiling: number; owes: number; available: number;
+};
+
+type SeasonRow = { id: string; name: string; starts_on: string; ends_on: string; bonus_per_kg: number; ceiling_per_kg: number; opens_on: string };
+const toSeason = (s: SeasonRow): SeasonDTO => ({
+  id: s.id, name: s.name, startsOn: s.starts_on, endsOn: s.ends_on,
+  bonus: toNumber(s.bonus_per_kg), ceiling: toNumber(s.ceiling_per_kg), opensOn: s.opens_on,
+});
+const seasonColumns = (i: SeasonInput) => ({
+  name: i.name, starts_on: i.startsOn, ends_on: i.endsOn, bonus_per_kg: i.bonus, ceiling_per_kg: i.ceiling, opens_on: i.opensOn,
+});
+
+/** Newest season first. */
+export async function listSeasons(): Promise<SeasonDTO[]> {
+  const supabase = await db();
+  const { data, error } = await supabase
+    .from("cf_seasons")
+    .select("id, name, starts_on, ends_on, bonus_per_kg, ceiling_per_kg, opens_on")
+    .order("starts_on", { ascending: false });
+  if (error) throw new Error("load seasons");
+  return (data as SeasonRow[]).map(toSeason);
+}
+
+export async function addSeason(i: SeasonInput): Promise<Result> {
+  const supabase = await db();
+  const { error } = await supabase.from("cf_seasons").insert(seasonColumns(i));
+  if (error) return error.code === "23505" ? { ok: false, error: "season_exists" } : failure(error.message);
+  return { ok: true, data: undefined };
+}
+
+export async function updateSeason(i: SeasonInput & { season: string }): Promise<Result> {
+  const supabase = await db();
+  const { error } = await supabase.from("cf_seasons").update(seasonColumns(i)).eq("id", i.season);
+  if (error) return error.code === "23505" ? { ok: false, error: "season_exists" } : failure(error.message);
+  return { ok: true, data: undefined };
+}
+
+/** One letter per active farmer, or only `farmer`'s letter. */
+export async function getSeasonLetters(season: string, farmer?: string): Promise<SeasonLetterDTO[]> {
+  const supabase = await db();
+  const { data, error } = await supabase.rpc("cf_season_letters", { p_season: season, p_farmer: farmer ?? null });
+  if (error) throw new Error("load season letters");
+  return (data as Record<string, unknown>[]).map((r) => ({
+    farmerId: String(r.farmer_id), farmerNo: Number(r.farmer_no), name: String(r.name), kebele: String(r.kebele),
+    kg: toNumber(r.kg), bought: toNumber(r.bought), bonus: toNumber(r.bonus), ceiling: toNumber(r.ceiling),
+    owes: toNumber(r.owes), available: toNumber(r.available),
+  }));
+}

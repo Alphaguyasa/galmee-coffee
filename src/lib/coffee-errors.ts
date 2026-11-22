@@ -4,7 +4,7 @@ const KNOWN = [
   "purchase_not_found", "advance_not_found", "lot_not_found", "already_voided", "lot_dispatched", "lot_empty",
 ] as const;
 
-export type CoffeeErrorKey = (typeof KNOWN)[number] | "grade_exists" | "generic";
+export type CoffeeErrorKey = (typeof KNOWN)[number] | "grade_exists" | "season_exists" | "bad_season_dates" | "generic";
 
 /** Turns a database error message into a translation key; anything unknown stays generic. */
 export function coffeeErrorKey(message: string | undefined): CoffeeErrorKey {

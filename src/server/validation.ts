@@ -75,3 +75,19 @@ export const voidSchema = z.object({
 export const lotSchema = z.object({ lot: uuid });
 export const dispatchSchema = z.object({ lot: uuid, to: z.string().trim().min(2).max(120) });
 export const idSchema = uuid;
+
+const perKg = z.coerce.number().min(0).max(100_000);
+/** A buying season: last season's dates, the bonus and advance ceiling per kg, and the day buying opens again. */
+export const seasonSchema = z
+  .object({
+    name: z.string().trim().min(2).max(40),
+    startsOn: daySchema,
+    endsOn: daySchema,
+    bonus: perKg,
+    ceiling: perKg,
+    opensOn: daySchema,
+  })
+  .refine((s) => s.endsOn >= s.startsOn, { message: "bad_season_dates", path: ["endsOn"] })
+  .refine((s) => s.opensOn > s.endsOn, { message: "bad_season_dates", path: ["opensOn"] });
+export const seasonUpdateSchema = z.intersection(seasonSchema, z.object({ season: uuid }));
+export const SEASON_KEYS = ["name", "startsOn", "endsOn", "bonus", "ceiling", "opensOn"] as const;

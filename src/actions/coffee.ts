@@ -14,6 +14,9 @@ import {
   gradeUpdateSchema,
   lotSchema,
   purchaseSchema,
+  SEASON_KEYS,
+  seasonSchema,
+  seasonUpdateSchema,
   voidSchema,
 } from "@/server/validation";
 
@@ -146,5 +149,33 @@ export async function updateGradeAction(_prev: ActionState, formData: FormData):
   const result = await dal.updateGrade({ ...parsed.data, active: parsed.data.active === "true" });
   if (!result.ok) return { error: result.error };
   revalidatePath("/setup");
+  return { done: true };
+}
+
+function seasonFormError(issues: { message: string }[]): ActionState {
+  return { error: issues.some((i) => i.message === "bad_season_dates") ? "bad_season_dates" : "form" };
+}
+
+export async function addSeasonAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
+  const denied = await requireManager();
+  if (denied) return denied;
+  const parsed = seasonSchema.safeParse(formToObject(formData, SEASON_KEYS));
+  if (!parsed.success) return seasonFormError(parsed.error.issues);
+  const result = await dal.addSeason(parsed.data);
+  if (!result.ok) return { error: result.error };
+  revalidatePath("/setup");
+  revalidatePath("/letters");
+  return { done: true };
+}
+
+export async function updateSeasonAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
+  const denied = await requireManager();
+  if (denied) return denied;
+  const parsed = seasonUpdateSchema.safeParse(formToObject(formData, [...SEASON_KEYS, "season"]));
+  if (!parsed.success) return seasonFormError(parsed.error.issues);
+  const result = await dal.updateSeason(parsed.data);
+  if (!result.ok) return { error: result.error };
+  revalidatePath("/setup");
+  revalidatePath("/letters");
   return { done: true };
 }
