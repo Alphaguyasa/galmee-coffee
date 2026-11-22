@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Mail } from "lucide-react";
 import { recordAdvanceAction, updateFarmerAction, voidEntryAction } from "@/actions/coffee";
 import { ActionForm } from "@/components/coffee/action-form";
 import { SelectField, selectClass } from "@/components/coffee/fields";
@@ -100,6 +100,12 @@ export default async function FarmerPage({ params }: { params: Promise<{ id: str
           </ul>
         )}
       </section>
+
+      {canManage ? (
+        <Link href={`/letters?farmer=${farmer.id}`} className="inline-flex min-h-11 items-center gap-2 rounded-md border bg-card px-3 font-semibold print:hidden">
+          <Mail className="size-5" aria-hidden />{t("seasonLetter")}
+        </Link>
+      ) : null}
 
       {canManage ? (
         <details className="rounded-md border bg-card p-3 print:hidden">

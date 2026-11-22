@@ -83,7 +83,9 @@
     "already_voided": "ይህ አስቀድሞ ተሰርዟል።",
     "lot_dispatched": "ይህ ሎት ከመጋዘን ወጥቷል፤ ግዢውን መሰረዝ አይቻልም።",
     "lot_empty": "በዚህ ሎት ውስጥ ቡና የለም።",
-    "grade_exists": "ይህ ኮድ ያለው ደረጃ አስቀድሞ አለ።"
+    "grade_exists": "ይህ ኮድ ያለው ደረጃ አስቀድሞ አለ።",
+    "season_exists": "በዚህ ስም ወቅት አስቀድሞ አለ።",
+    "bad_season_dates": "ቀናቱን ያረጋግጡ፦ ወቅቱ ከጀመረ በኋላ ማለቅ አለበት፣ ግዢም ወቅቱ ካለቀ በኋላ መጀመር አለበት።"
   },
   "methods": {
     "cash": "ጥሬ ገንዘብ",
@@ -175,7 +177,8 @@
     "name": "ሙሉ ስም",
     "kebele": "ቀበሌ",
     "phone": "ስልክ (ካለ)",
-    "status": "ሁኔታ"
+    "status": "ሁኔታ",
+    "seasonLetter": "የወቅት መክፈቻ ደብዳቤ"
   },
   "stock": {
     "title": "መጋዘን",
@@ -210,7 +213,22 @@
     "price": "ዋጋ በኪሎ",
     "addGrade": "ደረጃ ጨምር",
     "addAction": "ደረጃ ጨምር",
-    "code": "አጭር ኮድ"
+    "code": "አጭር ኮድ",
+    "seasons": "የግዢ ወቅቶች",
+    "seasonsHint": "ያለፈውን ወቅት ቀናት፣ በኪሎ ጉርሻ እና በኪሎ የሚፈቀደውን ቅድሚያ ያስገቡ። ለእያንዳንዱ አርሶ አደር የወቅት መክፈቻ ደብዳቤ ከዚህ ይታተማል።",
+    "noSeasons": "እስካሁን ወቅት የለም። ያለፈውን ወቅት ከታች ያክሉ።",
+    "seasonName": "የወቅቱ ስም",
+    "seasonNameExample": "የ2018 ምርት",
+    "seasonStarts": "ያለፈው ወቅት የጀመረበት",
+    "seasonEnds": "ያለፈው ወቅት ያለቀበት",
+    "bonusPerKg": "በኪሎ ጉርሻ (ብር)",
+    "ceilingPerKg": "በኪሎ የሚፈቀድ ቅድሚያ (ብር)",
+    "opensOn": "ግዢ የሚጀመርበት",
+    "seasonRange": "ከ{from} እስከ {to}",
+    "seasonTerms": "ጉርሻ በኪሎ {bonus} · ቅድሚያ በኪሎ {ceiling}",
+    "printLetters": "የወቅት ደብዳቤዎችን አትም",
+    "addSeason": "ወቅት ያክሉ",
+    "addSeasonAction": "ወቅት ጨምር"
   },
   "reports": {
     "title": "ሪፖርት",
@@ -226,5 +244,30 @@
     "advanced": "ብድር",
     "paid": "ክፍያ",
     "export": "CSV አውርድ"
+  },
+  "letters": {
+    "title": "የወቅት መክፈቻ ደብዳቤዎች",
+    "hint": "ለእያንዳንዱ አርሶ አደር አንድ ገጽ። አትመው ከምርት በፊት ያድሉ።",
+    "back": "ተመለስ",
+    "seasonPicker": "ወቅት",
+    "count": "{count} ደብዳቤ",
+    "print": "አትም",
+    "noSeason": "መጀመሪያ በማዋቀሪያ ያለፈውን ወቅት ያክሉ፦ ቀናቱን፣ ጉርሻውን እና በኪሎ ቅድሚያውን።",
+    "goToSetup": "ወደ ማዋቀሪያ",
+    "noFarmers": "ደብዳቤ የሚጻፍለት ንቁ አርሶ አደር የለም።",
+    "range": "ከ{from} እስከ {to}",
+    "dear": "ውድ {name}፣",
+    "farmerLine": "የአርሶ አደር ቁ. {no} · {kebele}",
+    "delivered": "እናመሰግናለን። በ{season} ወቅት ({range}) {kg} ኪሎ ቡና አምጥተውልናል፤ ዋጋው {amount} ነው።",
+    "notDelivered": "በ{season} ወቅት ቡና አላመጡልንም። በዚህ ወቅት ከእርስዎ ብንገዛ ደስ ይለናል።",
+    "kg": "ያስረከቡት ቡና",
+    "bonus": "ጉርሻዎ (በኪሎ {rate})",
+    "ceiling": "ሊወስዱ የሚችሉት ቅድሚያ (በኪሎ {rate})",
+    "owes": "ያልተመለሰ ቅድሚያ",
+    "available": "የሚፈቀድልዎ ቅድሚያ",
+    "opens": "ግዢ በ{date} እንጀምራለን።",
+    "thanks": "ቡናዎን ወደ ሚዛናችን ያምጡ። እያንዳንዱ ኪሎ በፊትዎ ይመዘናል፣ በሂሳብ መግለጫዎም ይጻፋል።",
+    "signBuyer": "ገዢ",
+    "signFarmer": "አርሶ አደር"
   }
 }

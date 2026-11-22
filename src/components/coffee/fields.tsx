@@ -11,13 +11,14 @@ export const selectClass =
   "h-12 w-full rounded-md border border-input bg-card px-3 text-base outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50";
 
 /** Native date input with the Ethiopian date under it; the value stored is Gregorian. */
-export function DateField({ name, label, defaultValue, min }: { name: string; label: string; defaultValue: string; min?: string }) {
+export function DateField({ name, label, defaultValue, min, id }: { name: string; label: string; defaultValue: string; min?: string; id?: string }) {
   const locale = useLocale() as Locale;
   const [value, setValue] = useState(defaultValue);
+  const inputId = id ?? name;
   return (
     <div className="grid gap-2">
-      <Label htmlFor={name}>{label}</Label>
-      <Input id={name} name={name} type="date" min={min} value={value} onChange={(e) => setValue(e.target.value)} required />
+      <Label htmlFor={inputId}>{label}</Label>
+      <Input id={inputId} name={name} type="date" min={min} value={value} onChange={(e) => setValue(e.target.value)} required />
       <p className="num text-sm text-muted-foreground" aria-live="polite">
         {/^\d{4}-\d{2}-\d{2}$/.test(value) ? formatEthiopianDate(value, locale) : ""}
       </p>

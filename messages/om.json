@@ -83,7 +83,9 @@
     "already_voided": "Kun duraan haqameera.",
     "lot_dispatched": "Lootiin kun kuusaa keessaa ba'eera, kanaaf bittaan haqamuu hin danda'u.",
     "lot_empty": "Loota kana keessa bunni hin jiru.",
-    "grade_exists": "Sadarkaan koodii kana qabu duraan jira."
+    "grade_exists": "Sadarkaan koodii kana qabu duraan jira.",
+    "season_exists": "Yeroon maqaa kanaan duraan jira.",
+    "bad_season_dates": "Guyyoota mirkaneessaa: yeroon erga jalqabee booda xumuramuu qaba, bittaanis erga yeroon xumuramee booda jalqabuu qaba."
   },
   "methods": {
     "cash": "Maallaqa callaa",
@@ -175,7 +177,8 @@
     "name": "Maqaa guutuu",
     "kebele": "Ganda",
     "phone": "Bilbila (yoo jiraate)",
-    "status": "Haala"
+    "status": "Haala",
+    "seasonLetter": "Xalayaa banaa yeroo"
   },
   "stock": {
     "title": "Kuusaa",
@@ -210,7 +213,22 @@
     "price": "Gatii kiiloo tokkoo",
     "addGrade": "Sadarkaa dabali",
     "addAction": "Sadarkaa dabali",
-    "code": "Koodii gabaabaa"
+    "code": "Koodii gabaabaa",
+    "seasons": "Yeroo bittaa",
+    "seasonsHint": "Guyyoota yeroo darbee, boonasii kiilootti fi liqaa duraa kiiloon tokko argamsiisu galchaa. Xalayaan banaa yeroo qonnaan bulaa hundaaf kanarraa maxxanfama.",
+    "noSeasons": "Ammaaf yeroon hin jiru. Yeroo darbe gadiitti dabalaa.",
+    "seasonName": "Maqaa yeroo",
+    "seasonNameExample": "Oomisha 2018",
+    "seasonStarts": "Yeroon darbe kan jalqabe",
+    "seasonEnds": "Yeroon darbe kan xumurame",
+    "bonusPerKg": "Boonasii kiilootti (birrii)",
+    "ceilingPerKg": "Liqaa duraa kiilootti hayyamamu (birrii)",
+    "opensOn": "Bittaan kan jalqabu",
+    "seasonRange": "{from} hanga {to}",
+    "seasonTerms": "Boonasii kiilootti {bonus} · Liqaa kiilootti {ceiling}",
+    "printLetters": "Xalayaa yeroo maxxansi",
+    "addSeason": "Yeroo dabali",
+    "addSeasonAction": "Yeroo dabali"
   },
   "reports": {
     "title": "Gabaasa",
@@ -226,5 +244,30 @@
     "advanced": "Liqii",
     "paid": "Kaffaltii",
     "export": "CSV buusi"
+  },
+  "letters": {
+    "title": "Xalayaawwan banaa yeroo",
+    "hint": "Qonnaan bulaa tokkoof fuula tokko. Maxxansaatii oomishaan dura raabsaa.",
+    "back": "Deebi'i",
+    "seasonPicker": "Yeroo",
+    "count": "{count, plural, one {xalayaa #} other {xalayaa #}}",
+    "print": "Maxxansi",
+    "noSeason": "Jalqaba Qindaa'inarratti yeroo darbe dabalaa: guyyoota, boonasii fi liqaa kiilootti.",
+    "goToSetup": "Gara Qindaa'inaa",
+    "noFarmers": "Qonnaan bulaan hojiirra jiru xalayaan barreeffamuuf hin jiru.",
+    "range": "{from} hanga {to}",
+    "dear": "Kabajamoo {name},",
+    "farmerLine": "Lakk. qonnaan bulaa {no} · {kebele}",
+    "delivered": "Galatoomaa. Yeroo {season} ({range}) buna kiiloo {kg} nuuf fiddan, gatiin isaa {amount}.",
+    "notDelivered": "Yeroo {season} buna nuuf hin fidne. Yeroo kana isin irraa bituuf gammanna.",
+    "kg": "Buna galfame",
+    "bonus": "Boonasii keessan (kiilootti {rate})",
+    "ceiling": "Liqaa duraa fudhachuu dandeessan (kiilootti {rate})",
+    "owes": "Liqaa duraa hin deebifamne",
+    "available": "Liqaa duraa isiniif hayyamame",
+    "opens": "Bittaa {date} jalqabna.",
+    "thanks": "Buna keessan gara madaala keenyaa fidaa. Kiiloon hundi fuuldura keessanitti madaalamee ibsa herrega keessanii keessatti barreeffama.",
+    "signBuyer": "Bitaa",
+    "signFarmer": "Qonnaan bulaa"
   }
 }

@@ -161,3 +161,15 @@
     background: #fff;
   }
 }
+
+/* Season opening letters: one farmer per printed page. */
+@media print {
+  .season-letter {
+    break-after: page;
+    color: #000;
+    background: #fff;
+  }
+  .season-letter:last-child {
+    break-after: auto;
+  }
+}

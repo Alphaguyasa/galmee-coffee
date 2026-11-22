@@ -83,7 +83,9 @@
     "already_voided": "This has already been voided.",
     "lot_dispatched": "This lot has left the warehouse, so the purchase cannot be voided.",
     "lot_empty": "This lot has no coffee in it.",
-    "grade_exists": "A grade with that code already exists."
+    "grade_exists": "A grade with that code already exists.",
+    "season_exists": "A season with this name already exists.",
+    "bad_season_dates": "Check the dates: the season must end after it starts, and buying must open after it ends."
   },
   "methods": {
     "cash": "Cash",
@@ -175,7 +177,8 @@
     "name": "Full name",
     "kebele": "Kebele",
     "phone": "Phone (optional)",
-    "status": "Status"
+    "status": "Status",
+    "seasonLetter": "Season opening letter"
   },
   "stock": {
     "title": "Warehouse",
@@ -210,7 +213,22 @@
     "price": "Price per kg",
     "addGrade": "Add a grade",
     "addAction": "Add grade",
-    "code": "Short code"
+    "code": "Short code",
+    "seasons": "Buying seasons",
+    "seasonsHint": "Set last season's dates, the bonus per kg and the advance each kg earns. The season opening letter for every farmer is printed from this.",
+    "noSeasons": "No seasons yet. Add last season below.",
+    "seasonName": "Season name",
+    "seasonNameExample": "2018 harvest",
+    "seasonStarts": "Last season started",
+    "seasonEnds": "Last season ended",
+    "bonusPerKg": "Bonus per kg (birr)",
+    "ceilingPerKg": "Advance allowed per kg (birr)",
+    "opensOn": "Buying opens on",
+    "seasonRange": "{from} to {to}",
+    "seasonTerms": "Bonus {bonus} per kg · Advance {ceiling} per kg",
+    "printLetters": "Print season letters",
+    "addSeason": "Add a season",
+    "addSeasonAction": "Add season"
   },
   "reports": {
     "title": "Reports",
@@ -226,5 +244,30 @@
     "advanced": "Advances",
     "paid": "Payments",
     "export": "Download CSV"
+  },
+  "letters": {
+    "title": "Season opening letters",
+    "hint": "One page per farmer. Print them and hand them out before the harvest.",
+    "back": "Back",
+    "seasonPicker": "Season",
+    "count": "{count, plural, one {# letter} other {# letters}}",
+    "print": "Print",
+    "noSeason": "Add last season in Setup first: its dates, bonus and advance per kg.",
+    "goToSetup": "Go to Setup",
+    "noFarmers": "No active farmers to write to.",
+    "range": "{from} to {to}",
+    "dear": "Dear {name},",
+    "farmerLine": "Farmer no. {no} · {kebele}",
+    "delivered": "Thank you. In the {season} season ({range}) you brought us {kg} kg of coffee, worth {amount}.",
+    "notDelivered": "You did not bring coffee to us in the {season} season. We would be glad to buy from you this season.",
+    "kg": "Coffee delivered",
+    "bonus": "Your bonus ({rate} per kg)",
+    "ceiling": "Advance you can take ({rate} per kg)",
+    "owes": "Advance you still owe",
+    "available": "Advance available to you",
+    "opens": "Buying starts on {date}",
+    "thanks": "Bring your coffee to our scale. Every kilo is weighed in front of you and written in your statement.",
+    "signBuyer": "Buyer",
+    "signFarmer": "Farmer"
   }
 }
