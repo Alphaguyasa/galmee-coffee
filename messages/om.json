@@ -277,6 +277,7 @@
     "failed": "{count, plural, one {Madaalli # hin fudhatamne} other {Madaallii # hin fudhatamne}}",
     "waitingHint": "Bilbila kana irratti olkaa'aman. Yeroo walqunnamtiin deebi'u ofumaan ergamu; hanga sanaatti seensa kana irraa hin ba'inaa.",
     "retry": "Irra deebi'i yaali",
-    "discard": "Haqi"
+    "discard": "Haqi",
+    "logoutUnsent": "{count, plural, one {Madaalli # ammaaf hin ergamne.} other {Madaallii # ammaaf hin ergamne.}} Ba'uun bilbila kana irraa isaan haqa. Garuu ni baatuu?"
   }
 }

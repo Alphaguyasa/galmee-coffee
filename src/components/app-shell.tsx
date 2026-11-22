@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { LogOut } from "lucide-react";
-import { logout } from "@/actions/auth";
 import { AppNav } from "@/components/app-nav";
+import { LogoutForm } from "@/components/coffee/logout-form";
 import { OfflineBanner } from "@/components/galmee/offline-banner";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
@@ -13,6 +13,8 @@ type ShellProps = {
   userName: string;
   roleLabel: string;
   canManage: boolean;
+  /** The login whose offline weighings live on this phone. */
+  owner: { userId: string; tenantId: string };
   children: React.ReactNode;
 };
 
@@ -34,7 +36,7 @@ function TenantBadge({
   );
 }
 
-export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canManage, children }: ShellProps) {
+export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canManage, owner, children }: ShellProps) {
   const [t, tCommon] = await Promise.all([getTranslations("auth"), getTranslations("common")]);
   return (
     <div className="min-h-dvh md:grid md:grid-cols-[15rem_1fr] print:block">
@@ -53,12 +55,12 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
             <div className="text-muted-foreground">{roleLabel}</div>
           </div>
           <LanguageSwitcher />
-          <form action={logout}>
+          <LogoutForm owner={owner}>
             <Button variant="outline" size="sm" className="w-full">
               <LogOut aria-hidden />
               {t("logout")}
             </Button>
-          </form>
+          </LogoutForm>
         </div>
       </aside>
 
@@ -67,7 +69,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
           <TenantBadge tenantName={tenantName} logoUrl={logoUrl} inverse />
           <div className="flex items-center gap-1">
             <LanguageSwitcher inverse />
-            <form action={logout}>
+            <LogoutForm owner={owner}>
               <Button
                 variant="ghost"
                 size="icon"
@@ -76,7 +78,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
               >
                 <LogOut aria-hidden />
               </Button>
-            </form>
+            </LogoutForm>
           </div>
         </header>
         <div className="print:hidden">

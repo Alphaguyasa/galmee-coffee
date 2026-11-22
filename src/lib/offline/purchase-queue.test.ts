@@ -61,6 +61,18 @@ describe("offline purchase queue", () => {
     ]);
   });
 
+  it("does not bring back a row discarded while it was being sent", async () => {
+    const store = memoryStore();
+    await enqueue(store, row("1"), 1);
+    await enqueue(store, row("2"), 2);
+    const refused = await syncQueue(store, A, async (r) => {
+      await discard(store, A, r.clientRef); // logout in the middle of the send
+      return r.clientRef === "1" ? { ok: false, network: false, error: "farmer_not_found" } : { ok: false, network: true };
+    });
+    expect(store.rows.size).toBe(0);
+    expect(refused.failed).toBe(0);
+  });
+
   it("treats a thrown error as offline", async () => {
     const store = memoryStore();
     await enqueue(store, row("1"));

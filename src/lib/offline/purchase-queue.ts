@@ -64,6 +64,10 @@ export async function enqueue(store: QueueStore, row: Omit<QueuedPurchase, "stat
   await store.put({ ...row, status: "pending", attempts: 0, createdAt: now });
 }
 
+async function stillQueued(store: QueueStore, clientRef: string) {
+  return (await store.all()).some((r) => r.clientRef === clientRef);
+}
+
 /** Sends this login's pending rows in order. Failed rows stay until a clerk retries or discards them. */
 export async function syncQueue(store: QueueStore, owner: QueueOwner, send: (row: QueuedPurchase) => Promise<SendResult>): Promise<SyncSummary> {
   const rows = await rowsFor(store, owner);
@@ -82,6 +86,9 @@ export async function syncQueue(store: QueueStore, owner: QueueOwner, send: (row
     if (result.ok) {
       await store.remove(row.clientRef);
       sent++;
+    } else if (!(await stillQueued(store, row.clientRef))) {
+      // Discarded while it was being sent (e.g. logout): never bring it back.
+      continue;
     } else if (result.network) {
       await store.put({ ...row, attempts: row.attempts + 1 });
       return { sent, failed, waiting: pending.length - i };
